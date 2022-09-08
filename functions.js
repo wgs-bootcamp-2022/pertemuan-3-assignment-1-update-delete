@@ -73,6 +73,28 @@ const deleteContact = (number) => {
 
 const updateContact = (key, name, number, email) => {
     const contacts = getAllContact()
+    
+    const duplicate = contacts.find((cont) => cont.name === name)
+    const duplicateEmail = contacts.find((cont) => cont.email === email)
+    const duplicateNumber = contacts.find((cont) => cont.number === number)
+
+    const valEmail = validator.isEmail(email)
+    const valNumber = validator.isMobilePhone(number,'id-ID')
+
+    if(duplicate){
+        console.log('Contact Name is already recorded')
+        return false
+    }
+
+    if(!email || valEmail==false || duplicateEmail){
+        console.log('Email format is not valid or Contact Email is already recorded')
+        return false
+    }
+
+    if(valNumber==false || duplicateNumber){
+        console.log('Mobile Number format is not valid or Contact Number is already recorded')
+        return false
+    }
     for (let i = 0; i < contacts.length; i++) {
         if (contacts[i].name === key || contacts[i].number === key || contacts[i].email === key ) {
             if(name && number && email) {
@@ -105,7 +127,6 @@ const updateContact = (key, name, number, email) => {
       }
     fs.writeFileSync(filepath, JSON.stringify(contacts))
     console.log('Contact has been updated')
-
 }
 
 module.exports = {saveContact, listContact, getDetailContact, deleteContact, updateContact}
