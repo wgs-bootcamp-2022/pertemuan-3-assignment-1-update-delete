@@ -73,50 +73,33 @@ const deleteContact = (number) => {
 
 const updateContact = (key, name, number, email) => {
     const contacts = getAllContact()
-    const valEmail = validator.isEmail(email)
-    const valNumber = validator.isMobilePhone(number,'id-ID')
 
-    if(!name || name==""){
-        console.log('Name format is not valid ')
-        return false
-    }
-
-    if(!email || valEmail==false){
-        console.log('Email format is not valid ')
-        return false
-    }
-
-    if(valNumber==false){
-        console.log('Mobile Number format is not valid')
-        return false
-    }
     for (let i = 0; i < contacts.length; i++) {
         if (contacts[i].name === key || contacts[i].number === key || contacts[i].email === key ) {
-            if(name && number && email) {
-                contacts[i].name = name
-                contacts[i].number = number
-                contacts[i].email = email
-            }
             if (name){
+                if(!name || name==""){
+                    console.log('Name format is not valid ')
+                    return false
+                }
                 contacts[i].name = name
             }
             if (number){
+                const valNumber = validator.isMobilePhone(number,'id-ID')
+
+                if(valNumber==false){
+                    console.log('Mobile Number format is not valid')
+                    return false
+                }
                 contacts[i].number = number
             }
             if (email){
+                const valEmail = validator.isEmail(email)
+
+                if(!email || valEmail==false){
+                    console.log('Email format is not valid ')
+                    return false
+                }
                 contacts[i].email = email
-            }
-            if(name && email){
-                contacts[i].name = name
-                contacts[i].email = email
-            }
-            if (name && number){
-                contacts[i].name = name
-                contacts[i].number = number
-            }
-            if (email && number){
-                contacts[i].email = email
-                contacts[i].number = number
             }
         }
       }
