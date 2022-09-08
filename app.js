@@ -68,6 +68,11 @@ yargs.command({
     command:"update",
     describe:"Update Contact",
     builder:{
+        key:{
+            desciribe:"Key",
+            demandOption:true,
+            type:"string"
+        },
         name:{
             desciribe:"Contact Name",
             demandOption:true,
@@ -85,7 +90,7 @@ yargs.command({
         }
     },
     handler(argv){
-        updateContact(argv.name,argv.number,argv.email)
+        updateContact(argv.key, argv.name,argv.number,argv.email)
     }
 })
 yargs.parse()

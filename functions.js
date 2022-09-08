@@ -41,6 +41,7 @@ const saveContact = (name, number, email)=> {
 
     contacts.push(contact)
     fs.writeFileSync(filepath, JSON.stringify(contacts))
+    console.log('Contact has been added')
 }
 
 const getAllContact = ()=> {
@@ -65,21 +66,23 @@ const getDetailContact = (name) => {
 
 const deleteContact = (number) => {
     const contacts = getAllContact()
-    let deleteContact = contacts.filter(user => user.number != number);
+    const deleteContact = contacts.filter(user => user.number != number);
     fs.writeFileSync(filepath, JSON.stringify(deleteContact))
-    console.log('Contact telah terhapus')
+    console.log('Contact has been deleted')
 }
 
-const updateContact = (name,number,email) => {
+const updateContact = (key, name, number, email) => {
     const contacts = getAllContact()
-    for (var i = 0; i < contacts.length; i++) {
-        if (contacts[i].number === number ) {
+    for (let i = 0; i < contacts.length; i++) {
+        if (contacts[i].name === key || contacts[i].number === key || contacts[i].email === key ) {
             contacts[i].name = name
-            contacts[i].number = number;
-            contacts[i].email = email;
+            contacts[i].number = number
+            contacts[i].email = email
         }
       }
     fs.writeFileSync(filepath, JSON.stringify(contacts))
+    console.log('Contact has been updated')
+
 }
 
 module.exports = {saveContact, listContact, getDetailContact, deleteContact, updateContact}
