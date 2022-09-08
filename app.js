@@ -75,12 +75,12 @@ yargs.command({
         },
         name:{
             desciribe:"Contact Name",
-            demandOption:true,
+            demandOption:false,
             type:"string"
         },
         number:{
             desciribe:"Contact Number",
-            demandOption:true,
+            demandOption:false,
             type:"string"
         },
         email:{

@@ -75,9 +75,32 @@ const updateContact = (key, name, number, email) => {
     const contacts = getAllContact()
     for (let i = 0; i < contacts.length; i++) {
         if (contacts[i].name === key || contacts[i].number === key || contacts[i].email === key ) {
-            contacts[i].name = name
-            contacts[i].number = number
-            contacts[i].email = email
+            if(name && number && email) {
+                contacts[i].name = name
+                contacts[i].number = number
+                contacts[i].email = email
+            }
+            if (name){
+                contacts[i].name = name
+            }
+            if (number){
+                contacts[i].number = number
+            }
+            if (email){
+                contacts[i].email = email
+            }
+            if(name && email){
+                contacts[i].name = name
+                contacts[i].email = email
+            }
+            if (name && number){
+                contacts[i].name = name
+                contacts[i].number = number
+            }
+            if (email && number){
+                contacts[i].email = email
+                contacts[i].number = number
+            }
         }
       }
     fs.writeFileSync(filepath, JSON.stringify(contacts))
