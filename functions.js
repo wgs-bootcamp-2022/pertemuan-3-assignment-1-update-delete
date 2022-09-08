@@ -71,8 +71,7 @@ const deleteContact = (number) => {
 }
 
 const updateContact = (name,number,email) => {
-    const file = fs.readFileSync(filepath, 'utf-8')
-    const contacts = JSON.parse(file)
+    const contacts = getAllContact()
     for (var i = 0; i < contacts.length; i++) {
         if (contacts[i].number === number ) {
             contacts[i].name = name
