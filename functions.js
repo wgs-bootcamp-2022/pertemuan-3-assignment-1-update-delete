@@ -76,11 +76,11 @@ const updateContact = (key, name, number, email) => {
 
     for (let i = 0; i < contacts.length; i++) {
         if (contacts[i].name === key || contacts[i].number === key || contacts[i].email === key ) {
+            if(name==""){
+                console.log('Name format is not valid ')
+                return false
+            }
             if (name){
-                if(!name || name==""){
-                    console.log('Name format is not valid ')
-                    return false
-                }
                 contacts[i].name = name
             }
             if (number){
