@@ -53,14 +53,14 @@ yargs.command({
     command:'delete',
     describe:"Delete Contact",
     builder:{
-        number:{
+        name:{
             desciribe:"Contact Name",
             demandOption:true,
             type:"string"
         }
     },
     handler(argv){
-        deleteContact(argv.number)
+        deleteContact(argv.name)
     }
 })
 

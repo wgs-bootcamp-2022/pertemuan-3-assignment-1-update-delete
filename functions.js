@@ -64,16 +64,19 @@ const getDetailContact = (name) => {
     console.log(`${detailContact.name}\n${detailContact.number}\n${detailContact.email}`)
 }
 
-const deleteContact = (number) => {
+const deleteContact = (name) => {
     const contacts = getAllContact()
-    const deleteContact = contacts.filter(user => user.number != number);
-    fs.writeFileSync(filepath, JSON.stringify(deleteContact))
+    const newContacts = contacts.filter(user => user.name.toLowerCase() != name.toLowerCase());
+    if(contacts.le === newContacts.length){
+        console.log(`${name} not found`)
+        return false
+    }
+    fs.writeFileSync(filepath, JSON.stringify(newContacts))
     console.log('Contact has been deleted')
 }
 
 const updateContact = (key, name, number, email) => {
     const contacts = getAllContact()
-
     for (let i = 0; i < contacts.length; i++) {
         if (contacts[i].name === key || contacts[i].number === key || contacts[i].email === key ) {
             if(name==""){
